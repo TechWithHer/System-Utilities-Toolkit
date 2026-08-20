@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+echo "Starting bulk renaming process..."
+sleep 1
+echo "Usage: $0 [directory] [mode] [value]"
+
 # Check for required arguments
 if [ "$#" -lt 3 ]; then
   echo "Usage: $0 [directory] [mode] [value]"
@@ -25,7 +29,7 @@ for FILE in *; do
   [ -f "$FILE" ] || continue  # Skip if not a file
 
   case "$MODE" in
-    prefix)
+prefix)
       NEW_NAME="${VALUE}${FILE}"
       ;;
     suffix)

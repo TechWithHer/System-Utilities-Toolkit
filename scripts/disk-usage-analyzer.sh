@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+echo "Starting disk usage analysis..."
+sleep 1
+echo "Usage: $0 [directory_path] [threshold_percentage]"
+
+
 # Check for exactly two arguments
 if [ "$#" -ne 2 ]; then
   echo "Usage: $0 [directory_path] [threshold_percentage]"

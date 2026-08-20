@@ -3,6 +3,10 @@
 # Enable strict error handling
 set -euo pipefail
 
+echo "Starting log cleanup process..."
+sleep 1
+echo "Usage: $0 [target_directory] [file_pattern] [days_old]"
+
 # Check input arguments
 if [ "$#" -ne 3 ]; then
   echo "Usage: $0 [target_directory] [file_pattern] [days_old]"

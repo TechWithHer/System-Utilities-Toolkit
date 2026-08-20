@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+echo "Starting service health check..."
+sleep 1
+echo "Usage: $0 [service_name]"
+
 # Check if service name is passed
 if [ "$#" -ne 1 ]; then
   echo "Usage: $0 [service_name]"
