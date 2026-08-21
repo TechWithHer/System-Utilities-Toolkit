@@ -2,34 +2,73 @@ import subprocess
 import time
 
 print("Welcome to the Utility Runner!")
-time.sleep(2)
+time.sleep(1)
 print("This tool allows you to run various system utilities.")
-time.sleep(2)
+time.sleep(1)
 
 utilities = {
-    "1": "bash scripts/disk-usage-analyzer.sh",
-    "2": "bash scripts/auto-backup.sh",
-    "3": "bash scripts/bulk-renamer.sh",
-    "4": "bash scripts/clean-logs.sh",
-    "5": "bash scripts/service-health-checker.sh",
+    "1": ("Disk Usage Analyzer", "bash scripts/disk-usage-analyzer.sh"),
+    "2": ("Auto Backup", "bash scripts/auto-backup.sh"),
+    "3": ("Bulk Renamer", "bash scripts/bulk-renamer.sh"),
+    "4": ("Clean Logs", "bash scripts/clean-logs.sh"),
+    "5": ("Service Health Check", "bash scripts/service-health-checker.sh"),
 }
 
 while True:
-    print("Available utilities:")
-    for key in utilities.keys():
-        print(f"- {key}: {utilities[key]}")
 
-    choice = input("Enter the utility number you want to run any specific utility(or 'exit' to quit): ")
-    
+    print("\nAvailable utilities:")
+
+    for number, (name, command) in utilities.items():
+        print(f"{number}. {name}")
+
+    choice = input("\nEnter utility number (or 'exit'): ")
+
     if choice == "exit":
         break
-    elif choice in utilities:
-        command = utilities[choice]
-        try:
-            result = subprocess.run(command, shell=True, check=True, text=True)
-            print(result.stdout)
-        except subprocess.CalledProcessError as e:
-            print(f"An error occurred while executing the command: {e}")
-            print(f"Error output: {e.stderr}")
-    else:
-        print("Invalid choice. Please try again.")
+
+    if choice not in utilities:
+        print("Invalid choice.")
+        continue
+
+    name, command = utilities[choice]
+
+    print(f"\nRunning {name}...")
+
+    try:
+
+        if choice == "1":
+            directory = input("Enter directory path: ")
+            threshold = input("Enter threshold percentage: ")
+            command = f"{command} '{directory}' {threshold}"
+
+        elif choice == "2":
+            source = input("Enter source path: ")
+            destination = input("Enter backup destination: ")
+            command = f"{command} '{source}' '{destination}'"
+
+        elif choice == "3":
+            directory = input("Enter directory path: ")
+            old_name = input("Enter old text: ")
+            new_name = input("Enter new text: ")
+            command = f"{command} '{directory}' '{old_name}' '{new_name}'"
+
+        elif choice == "4":
+            directory = input("Enter directory path: ")
+            pattern = input("Enter file pattern: ")
+            days = input("Enter number of days: ")
+            command = f"{command} '{directory}' '{pattern}' {days}"
+
+        elif choice == "5":
+            service = input("Enter service name: ")
+            command = f"{command} '{service}'"
+
+        subprocess.run(
+            command,
+            shell=True,
+            check=True
+        )
+
+        print("\nUtility completed successfully.")
+
+    except subprocess.CalledProcessError as e:
+        print(f"\nUtility failed with exit code: {e.returncode}")
