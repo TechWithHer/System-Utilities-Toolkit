@@ -1,0 +1,22 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create package
+        run: |
+          tar -czf system-utilities-cli-${GITHUB_REF_NAME}.tar.gz \
+            app.py \
+            README.md \
+            LICENSE \
+            scripts/
