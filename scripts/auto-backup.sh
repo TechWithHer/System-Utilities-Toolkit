@@ -6,6 +6,10 @@ echo "Starting backup process..."
 sleep 1
 echo "Usage: $0 [source_path] [backup_destination]"
 
+echo "Input source:"
+SOURCE="$1"
+echo "Input destination:"
+input_destination="$2"
 if [ "$#" -ne 2 ]; then
  echo "Usage: $0 [source_path] [backup_destination]"
  exit 1 
@@ -16,7 +20,7 @@ DEST="$2"
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 BASENAME=$(basename "$SOURCE")
 BACKUP_NAME="${BASENAME}_backup_${TIMESTAMP}.tar.gz"
-LOG_FILE="logs/backup.log"
+LOG_FILE="../logs/backup.txt"
 
 if [ ! -e "$SOURCE" ]; then
   echo "[ERROR] Source path does not exist: $SOURCE"

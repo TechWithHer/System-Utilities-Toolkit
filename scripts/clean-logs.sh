@@ -1,29 +1,25 @@
 #!/bin/bash
 
-# Enable strict error handling
-set -euo pipefail
+echo "Starting log cleanup..."
 
-echo "Starting log cleanup process..."
-sleep 1
-echo "Usage: $0 [target_directory] [file_pattern] [days_old]"
-
-# Check input arguments
+# Check that 3 arguments were provided
 if [ "$#" -ne 3 ]; then
-  echo "Usage: $0 [target_directory] [file_pattern] [days_old]"
-  exit 1
+    echo "Usage: $0 <directory> <file-pattern> <days>"
+    exit 1
 fi
 
-TARGET_DIR="$1"
+DIRECTORY="$1"
 PATTERN="$2"
 DAYS="$3"
 
-# Check if the directory exists
-if [ ! -d "$TARGET_DIR" ]; then
-  echo "[ERROR] Directory does not exist: $TARGET_DIR"
-  exit 2
+# Check if directory exists
+if [ ! -d "$DIRECTORY" ]; then
+    echo "Error: Directory does not exist: $DIRECTORY"
+    exit 1
 fi
 
-# Find and delete files matching pattern older than X days
-find "$TARGET_DIR" -type f -name "$PATTERN" -mtime +"$DAYS" -print -delete
+echo "Cleaning files older than $DAYS days..."
 
-echo "[INFO] Old log files matching '$PATTERN' older than $DAYS days deleted from $TARGET_DIR"
+find "$DIRECTORY" -type f -name "$PATTERN" -mtime +"$DAYS" -print -delete
+
+echo "Cleanup completed."

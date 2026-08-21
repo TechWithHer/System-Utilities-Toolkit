@@ -1,0 +1,2 @@
+[SUCCESS] 2026-08-21 00:11:41 - Backup of 'SOURCE' saved as 'DESTINATION/SOURCE_backup_2026-08-21_00-11-41.tar.gz'
+[SUCCESS] 2026-08-21 00:15:38 - Backup of '../tests/source_folder' saved as '../tests/destination_folder/source_folder_backup_2026-08-21_00-15-38.tar.gz'
