@@ -109,6 +109,43 @@ Testing will be executed locally and later integrated into the CI workflow.
 
 ## CI/CD
 
+```text 
+                  DEVELOPMENT
+                       │
+                       ▼
+                  git push
+                       │
+                       ▼
+                  ┌─────────┐
+                  │   CI    │
+                  └────┬────┘
+                       │
+                  Run tests
+                       │
+                ┌──────┴──────┐
+              PASS           FAIL
+                │               │
+                ▼               ▼
+             Continue          STOP
+                │
+                ▼
+           Create v1.0.0 tag
+                │
+                ▼
+              ┌─────┐
+              │ CD  │
+              └──┬──┘
+                 │
+                 ▼
+             Package
+                 │
+                 ▼
+          GitHub Release
+                 │
+                 ▼
+       .tar.gz artifact
+
+```
 #### Continuous Integration
 
 GitHub Actions will automatically validate the project when changes are pushed.
