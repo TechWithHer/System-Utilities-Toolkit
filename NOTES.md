@@ -83,20 +83,3 @@ Exit code
 The two most important rules
 0     → Success ✅
 non-0 → Something went wrong ❌
-
-# Testing Cases Checklis 
-- Check if Python3 is installed 
-- Check if we are in Linux Env 
-- Check if we are having Shell 
-- Checking the arguments 
-
-### Environment Checks
-
-- [ ] Python 3 is available
-- [ ] Bash is available
-
-### Application Tests
-
-- [ ] Python CLI starts successfully
-- [ ] All five Bash scripts exist
-- [ ] Scripts return the expected exit codes
