@@ -63,9 +63,7 @@ System-Utilities-CLI/
 │   ├── clean-logs.sh
 │   └── service-health-checker.sh
 ├── tests/
-│   ├── bulkfolder/
-│   ├── destination_folder/
-│   └── source_folder/
+│   ├── test.sh (primary tests of syntax and linting)
 ├── logs/
 │   └── backup.txt
 ├── NOTES.md
